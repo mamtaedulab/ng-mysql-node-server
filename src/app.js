@@ -15,6 +15,9 @@ const swaggerDocument = require('./swagger.json');
 const logger = require('./utils/logger');
 const br = require('../src/db/baseRepository')
 
+
+
+
 require('./passport');
 
 // common controllers
@@ -22,6 +25,8 @@ const authController = require('./api/common/auth/authController');
 const userController = require('./api/common/user/userController');
 const userPhotoController = require('./api/common/user/userPhotoController');
 const settingsController = require('./api/common/settings/settingsController');
+const myDataController=require('./api/common/myData/myDataController')
+const blogsController=require('./api/common/blogs/blogsController')
 
 const SeedService = require('./api/seedService');
 const seedService = new SeedService();
@@ -31,6 +36,9 @@ const db = require("./models");
 db.sequelize.sync();
 const models = require( './models/index');
 
+const FILE_LOCATION= 'D:/demoProject/ng-mysql-node-server/';
+app.use('/api/upload/',express.static(FILE_LOCATION + "src/assets/public/upload/"));
+app.use('/api/blogs/',express.static(FILE_LOCATION + "src/assets/public/blogs/"));
 
 function logErrors(err, req, res, next) {
   logger.error(err);
@@ -86,11 +94,15 @@ app.use(`${root}/users/:userId/photo`, userPhotoController);
 
 app.use(`${root}/users`, auth, userController);
 app.use(`${root}/settings`, auth, settingsController);
-
+app.use(`${root}/myData`,myDataController)
+app.use(`${root}/blogs`,blogsController)
 
 app.use(logErrors);
 app.use(clientErrorHandler);
 const userService = new UserService();
+app.get("/add",(req,res)=>{
+  console.log('reached.......');
+})
 app.get('/', (req, res) => {
  //console.log("count "+ models.user.count());
 //  models.users.findAndCountAll({

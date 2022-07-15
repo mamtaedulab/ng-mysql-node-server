@@ -3,12 +3,15 @@ var _documents = require("./documents");
 var _permissions = require("./permissions");
 var _settings = require("./settings");
 var _users = require("./users");
-
+var _myData=require("./demo");
+var _blogs=require('./blogs');
 function initModels(sequelize) {
   var documents = _documents(sequelize, DataTypes);
   var permissions = _permissions(sequelize, DataTypes);
   var settings = _settings(sequelize, DataTypes);
   var users = _users(sequelize, DataTypes);
+  var myData= _myData(sequelize,DataTypes);
+  var blogs=_blogs(sequelize,DataTypes)
 
   // permissions.belongsToMany(roles, { as: 'role_id_roles', through: role_has_permissions, foreignKey: "permission_id", otherKey: "role_id" });
   // roles.belongsToMany(permissions, { as: 'permission_id_permissions', through: role_has_permissions, foreignKey: "role_id", otherKey: "permission_id" });
@@ -26,6 +29,8 @@ function initModels(sequelize) {
     permissions,
     settings,
     users,
+    myData,
+    blogs
     };
 }
 module.exports = initModels;

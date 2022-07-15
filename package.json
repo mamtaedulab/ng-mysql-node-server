@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "conventional-changelog": "conventional-changelog",
-    "start": "node ./src/app",
+    "start": "nodemon ./src/app",
     "dev": "./node_modules/.bin/nodemon ./src/app",
     "start:prod": "export NODE_ENV=production&&node ./src/app",
     "lint": "eslint --report-unused-disable-directives .",
@@ -31,6 +31,7 @@
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.0",
     "mongodb": "^3.2.2",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^2.3.3",
     "node-dev": "^7.1.0",
     "passport": "^0.4.0",
@@ -39,6 +40,7 @@
     "passport-oauth2": "^1.5.0",
     "passport-oauth2-middleware": "^1.0.3",
     "passport-oauth2-refresh": "^1.1.0",
+    "rimraf": "^3.0.2",
     "sequelize": "^6.15.0",
     "swagger-ui-express": "^4.1.2",
     "winston": "^3.2.1"
@@ -48,6 +50,7 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "nodemon": "^2.0.0"
+    "nodemon": "^2.0.0",
+    "sequelize-cli": "^6.4.1"
   }
 }

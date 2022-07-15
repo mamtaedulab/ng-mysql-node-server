@@ -19,7 +19,7 @@ class SeedService {
 
     let users = models.users.findAll({}).then( data => {
   
-     // console.log("data",data.length)
+     console.log("data",data.length)
       if(data.length == 0){
         this.seeding().then();
       }
