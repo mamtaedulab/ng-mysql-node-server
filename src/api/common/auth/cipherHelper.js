@@ -35,7 +35,9 @@ function sha512(password, salt) {
 
   return {
     salt,
-    passwordHash,
+    passwo,
+
+    rdHash,
   };
 }
 

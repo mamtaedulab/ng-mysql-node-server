@@ -34,9 +34,7 @@ var Storage = multer.diskStorage({
     }
 })
 
-const upload = multer({
-    storage: Storage
-});
+const upload = multer({storage: Storage});
 
 
 //adding data to database
@@ -141,8 +139,6 @@ router.get('/getAllBlogs', (req, res) => {
             })
         })
     }
-
-
 })
 
 router.get('/getdeleteBlogData', (req, res) => {
@@ -171,7 +167,4 @@ router.get('/getdeleteBlogData', (req, res) => {
 
     })
 })
-
-
-
 module.exports = router;

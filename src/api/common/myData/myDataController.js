@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
 
 
 
-
+//for saving images and video
 var Storage = multer.diskStorage({
     destination: (req, file, cb) => {
         var dir;
@@ -93,48 +93,15 @@ router.post('/img', upload.single('avatar'), (req, res) => {
         }
     }).then(function (data) {
         res.status(200).json({
-            message: 'file upload successfully!',
-            // avatar: url + '/public/' + req.file.filename,
+            message: 'file upload successfully!'
         })
     })
-
-    // if(req.file == undefined){
-    //     res.status(201).json({
-    //         message: 'No changes to file!',
-    //        })
-    // }else{
-    //     //console.log("req.file.path===>"+req.file.path);
-    //     //var minusPublic = req.file.path.replace(/public\//g, "")
-    //     var minusPublic = req.file.path.split('public')
-    //     // console.log("minusPublic===>"+minusPublic)
-    //     // console.log("minusPublic[1]===>"+minusPublic[1])
-    //     var url = serverUrl + minusPublic[1]
-    //     //console.log("url===>"+url)
-
-    // models.companies.update({ logo: url }, {
-    //     where: {
-    //         id: id
-    //     }
-    // }).then(function (data) {
-    //     res.status(200).json({
-    //         message: 'file upload successfully!',
-    //         //  avatar: url + '/public/' + req.file.filename,
-    //     })
-    // })
-    // }
-
-
 })
 
 
 //For video upload
 router.post('/video', upload.single("avatar"), (req, res) => {
-    console.log("video")
-    console.log(req.file)
-
     var id = req.body.id;
-    console.log('id', id)
-
     db.mydata.update({
         video: req.file.filename
     }, {
@@ -143,8 +110,7 @@ router.post('/video', upload.single("avatar"), (req, res) => {
         }
     }).then(function (data) {
         res.status(200).json({
-            message: 'file upload successfully!',
-
+            message: 'file upload successfully!'
         })
     })
 
@@ -153,21 +119,7 @@ router.post('/video', upload.single("avatar"), (req, res) => {
 
 //fetching all data 
 router.get('/getAllData', (req, res) => {
-    console.log('--------------------------------------------------------------')
-
-    // console.log(__dirname)
-    //console.log("getProgramData getProgramData getProgramData==>"+req.query.college_id);
-    // var condition = {};
-    // if(req.query.role == 'company'){
-    //     condition = {
-    //         company_id : req.query.college_id
-    //     }
-    // }else{
-    //     condition = {
-    //         status:'active'
-    //     }
-    // }
-    // db.mydata.findAll().then(notes => res.json(notes));
+    //console.log('--------------------------------------------------------------')
     db.mydata.findAll().then(function (alldata) {
         res.json({
             status: 200,
@@ -194,8 +146,8 @@ router.get('/getValue', (req, res) => {
 
 //Deleting Data
 router.get('/getDeleteValue', (req, res) => {
-    console.log("###############")
-    console.log(req.query.data_id);
+    // console.log("###############")
+    // console.log(req.query.data_id);
     db.mydata.destroy({
         where: {
             id: req.query.data_id
@@ -296,7 +248,5 @@ router.post('/getUpdateValue', (req, res) => {
     })
   
 })
-
-
 
 module.exports = router;
